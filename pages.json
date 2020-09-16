@@ -20,6 +20,10 @@
 	"subPackages": [{
 		"root": "bbs",
 		"pages": [{
+				"path": "money/my"
+			},{
+				"path": "order/my"
+			},{
 				"path": "index/index"
 			},
 			{

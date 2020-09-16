@@ -14,7 +14,7 @@
 					<view class="content flex-sub">
 						<view>{{user.nickname}}</view>
 						<view class="text-gray flex justify-between">
-							<view class="text-sm">金币：{{user.gold}} 积分：{{user.grade}}</view>			
+							<view class="text-sm">余额：{{user.gold}} 积分：{{user.grade}}</view>			
 							<view> 
 								<navigator url="/pages/user/set" class="margin-right-xl block text-black">
 									<text class="cuIcon-settingsfill"></text>设置
@@ -26,10 +26,22 @@
 			</view>
 				
 				<view class="cu-list menu sm-border margin-top">
+					<view class="cu-item arrow" @click="gourl('../../bbs/money/my')">
+						<view class="content">
+							<text class="cuIcon-apps text-red"></text>
+							<text class="">我的钱包</text>
+						</view>
+					</view>
+					<view class="cu-item arrow" @click="gourl('../../bbs/order/my')">
+						<view class="content">
+							<text class="cuIcon-apps text-red"></text>
+							<text class="">我的订单</text>
+						</view>
+					</view>
 					<view class="cu-item arrow" @click="gourl('../../bbs/topic/my')">
 						<view class="content">
 							<text class="cuIcon-form text-blue"></text>
-							<text class="">我的帖子</text>
+							<text class="">我的商品</text>
 						</view>
 					</view>
 					<view class="cu-item arrow" @click="gourl('../../bbs/comment/my')">
