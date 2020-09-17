@@ -1,7 +1,7 @@
 <template>
 	<view>		
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
-			<block slot="content">我的帖子</block>
+			<block slot="content">我的商品</block>
 		</cu-custom>
 		
 		<un-login v-if="unLogin"></un-login> 
@@ -9,7 +9,7 @@
 			<view class="text-gray padding justify-center flex" v-if="Object.keys(list).length==0" ><text>暂无数据</text></view>			
 			<view class="cu-card case isCard">
 				<view class="cu-item shadow" v-for="(item,index) in list" :key="index">
-					<view class="image">
+					<view @click="goDetail(item._id)" class="image">
 						<image class="sglist-imglist-img" mode="widthFix" :src="item.imgList[0].imgurl"></image>
 						<view class="cu-bar bg-shadeBottom"> <text class="text-cut">{{item.title}}</text></view>
 					</view>
@@ -19,8 +19,8 @@
 					<view class="content flex-sub">				
 						<view class="text-gray flex justify-around padding-bottom">
 							<view @click="goEdit(item._id)" class="text-blue"><text class="cuIcon-edit"></text> 编辑</view>
-							<view @click="goDetail(item._id)" class="text-green"><text class="cuIcon-attention"></text> 查看</view>
-							<view @click="del(item._id)" class="text-red"><text class="cuIcon-delete"></text>删除</view>
+							<view @click="goDetail(item._id)" class="text-green"><text class="cuIcon-attention"></text> 库存</view>
+							<view @click="del(item._id)" class="text-red"><text class="cuIcon-delete"></text>更多</view>
 						</view>
 					</view>
 				</view>
@@ -131,32 +131,42 @@
 				})
 			}, 
 			del:function(id){
-				var that=this;
-				uni.showModal({
-					title:"删除提示",
-					content:"删除后不可恢复",
-					success:function(res){
-						if(res.confirm){
-							uniCloud.callFunction({
-								name:"bbs_topic",
-								data:{
-									cloudAction:"delete",
-									params:{
-										id:id,
-										ssuserid:this.ssuserid,
-									}
-								}
-							}).then((res)=>{
-								for(var i in that.list){
-									if(that.list[i]._id==id){
-										that.list.splice(i,1);										 
-									}
-								}
+				uni.showActionSheet({
+				    itemList: ['复制链接', '分享商品', '删除商品'],
+				    success: function (res) {
+				        console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+				    },
+				    fail: function (res) {
+				        console.log(res.errMsg);
+				    }
+				});
+				
+				// var that=this;
+				// uni.showModal({
+				// 	title:"删除提示",
+				// 	content:"删除后不可恢复",
+				// 	success:function(res){
+				// 		if(res.confirm){
+				// 			uniCloud.callFunction({
+				// 				name:"bbs_topic",
+				// 				data:{
+				// 					cloudAction:"delete",
+				// 					params:{
+				// 						id:id,
+				// 						ssuserid:this.ssuserid,
+				// 					}
+				// 				}
+				// 			}).then((res)=>{
+				// 				for(var i in that.list){
+				// 					if(that.list[i]._id==id){
+				// 						that.list.splice(i,1);										 
+				// 					}
+				// 				}
 								 
-							})
-						}
-					}
-				})
+				// 			})
+				// 		}
+				// 	}
+				// })
 				
 			}
 		}
