@@ -1,11 +1,8 @@
-在得推微论坛cloud版（https://ext.dcloud.net.cn/plugin?id=）基础上改版的，也当学习云函数用，作为一个模板。长期更新
+基于uinapp+unicloud开发的发卡社区
 
-个人小型博客模板
-数据库 
-	bbs_topic
-	comment
-	fav
-	love
-	uni-id-users
-	
-集合了 colorui、uview-ui、mescroll.js上拉加载下拉刷新组件、uni-id用户注册登录
+社区顾名思义，是一个交流的平台，在这个平台中的每个人，既是买家也是卖家。
+
+享受他人提供商品的同时也可以出售自己的商品
+一切的虚拟商品都可以在本社区进行交易
+
+项目交流群：96866574
