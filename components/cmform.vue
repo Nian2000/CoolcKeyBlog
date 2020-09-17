@@ -19,7 +19,7 @@
 		<view v-if="!unLogin" class="padding-tb-xl margin-top-xl">
 			<view class="cu-bar foot bg-white justify-end flex">
 				<view class="padding-right-xl"><button class="cu-btn bg-blue shadow lg" @click="show = true">评论</button></view>
-				<view class="padding-right-xl"><button class="cu-btn bg-red shadow lg" @click="show = true">购买</button></view>
+				<view class="padding-right-xl"><button class="cu-btn bg-red shadow lg" @click="showBuy = true">购买</button></view>
 			</view>
 		</view>
 		<u-popup v-model="show" mode="bottom">
@@ -38,6 +38,16 @@
 						<button formType="submit" class="cu-btn shadow bg-blue">评论</button>
 					</view>
 				</form>
+			</view>
+		</u-popup>
+		<u-popup v-model="showBuy" mode="bottom">
+			<view class="buy">
+				<text class="margin-bottom">请问要买几张卡密？</text>
+				<slider class="margin-bottom" value="1" @changing="buyNumberM" min="1" max="200" show-value />
+				<view class="operate">
+					<button @click="showBuy = false" class="cu-btn shadow margin-right-xl bg-red">取消</button>
+					<button formType="submit" class="cu-btn shadow bg-blue">购买{{ buyNumber }}张卡密（{{ totalPrice }}元）</button>
+				</view>
 			</view>
 		</u-popup>
 	</view>
@@ -67,21 +77,14 @@ export default {
 			unLogin: true,
 			ssuserid: '',
 			show: false,
+			showBuy: false,
 			start: 0,
 			limit: 4,
 			listShow: true,
 			index: 0,
-			buyNumberList: [
-				{ name: '1张', number: 1 },
-				{ name: '2张', number: 2 },
-				{ name: '3张', number: 3 },
-				{ name: '4张', number: 4 },
-				{ name: '5张', number: 5 },
-				{ name: '10张', number: 10 },
-				{ name: '20张', number: 20 },
-				{ name: '50张', number: 50 }
-			],
-			buyNumber: 1
+			buyNumber: 1,
+			totalPrice: 0, //要更新到初始价格
+			price: 0.5
 		};
 	},
 	created: function() {
@@ -93,7 +96,10 @@ export default {
 		//End 检测是否登录
 	},
 	methods: {
-		buyNumberM: function() {},
+		buyNumberM: function(e) {
+			this.buyNumber = e.detail.value;
+			this.totalPrice = this.price * this.buyNumber;
+		},
 		getPage: function() {
 			var that = this;
 			// console.log(this.objectid)
@@ -203,4 +209,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.buy {
+	padding: 30rpx;
+	.operate{
+		margin-left: 100rpx;
+	}
+}
+</style>

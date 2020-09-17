@@ -7,8 +7,7 @@
 				<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem" style-type="button" active-color="#0083dd"></uni-segmented-control>
 				<view class="content">
 					<view v-if="current === 0">
-						<uni-list>
-							<uni-list-item title="" note="">
+						
 								<view class="orderItem">
 									<image class="orderImg" src="../../static/user_head.jpg" mode="aspectFill"></image>
 									<view class="orderInfo">
@@ -22,15 +21,14 @@
 										<button type="default" size="mini">删除订单</button>
 									</view>
 								</view>
-							</uni-list-item>
 							
-						</uni-list>
+							
+						
 					</view>
 					<view v-if="current === 1">选项卡2的内容</view>
 				</view>
 			</view>
 		</view>
-		
 	</view>
 </template>
 

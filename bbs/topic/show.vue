@@ -4,7 +4,7 @@
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
 			<block slot="content">{{data.title}}</block>
 		</cu-custom>
-		
+		 <uni-notice-bar @getmore="getMore" :showGetMore="true" moreText="去订单中查看" single="true" text="您已经购买过该商品了"></uni-notice-bar>
 		<view class="cu-list menu-avatar">
 			<view class="cu-item">
 				<view class="cu-avatar round lg" :style="'backgroundImage:url('+ author.avatar +')'"></view>
@@ -49,9 +49,11 @@
 
 <script>
 	import cmform from "../../components/cmform.vue";
+	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
 	export default {
 		components: {
-			cmform
+			cmform,
+			uniNoticeBar
 		},
 		data: function() {
 			return {
@@ -79,6 +81,11 @@
 			this.addView();
 		},
 		methods: {
+			getMore(){
+				uni.showToast({
+					title:"去查看嘿嘿"
+				})
+			},
 			openImg(url){
 				uni.downloadFile({
 				  url: url,
