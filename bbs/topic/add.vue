@@ -11,13 +11,28 @@
 			</view>
 			<view class="cu-form-group align-start">
 				<view class="title">价格</view>
-				<input name="price" class="input" type="number" placeholder="单价" />
+				<input name="price" class="input" type="number" placeholder="您要卖多少大洋呢？" />
 			</view>
 			<view class="cu-form-group align-start">
 				<view class="title">加密</view>
-				<textarea name="hide"  maxlength="-1" placeholder="购买后才可查看的内容"></textarea>
+				<textarea name="hide" maxlength="-1" placeholder="付费后才可以查看的内容"></textarea>
 			</view>
-			<view class="cu-form-group align-start"><textarea name="content" maxlength="-1" placeholder="请输入简介 ( 无需购买即可查看 )"></textarea></view>
+			<view class="cu-form-group align-start">
+				<view class="title">简介</view>
+				<textarea name="content" maxlength="-1" placeholder="不用付费直接白嫖的内容"></textarea>
+			</view>
+			<view class="cu-form-group align-start" v-show="isRepeat">
+				<view class="title">卡密</view>
+				<textarea name="code" v-model="codeString" maxlength="-1" placeholder="请输入卡密,一行一条" v-on:input="codeInput"></textarea>
+			</view>
+
+			<view class="cu-form-group text-right text-sm">
+				<view class="" v-show="isRepeat">已经输入卡密：{{ codeHeight }}条</view>
+				<view class="hide">
+					<text style="margin-right: 10rpx;">销售卡密</text>
+					<switch name="repeat" @change="hideToast" />
+				</view>
+			</view>
 			<view class="bg-white">
 				<upimg-box @callParent="callImgList" :defaultImgsList="[]"></upimg-box>
 				<view class="padding flex flex-direction"><button class="cu-btn bg-blue shadow lg" form-type="submit">发布</button></view>
@@ -41,13 +56,29 @@ export default {
 		return {
 			imgsList: [],
 			unLogin: true,
-			ssuserid: ''
+			ssuserid: '',
+			codeString: '',
+			codeHeight: 0,
+			isRepeat: false
 		};
 	},
 	onLoad: function() {
 		this.getPage();
 	},
 	methods: {
+		hideToast: function(e) {
+			let isTrue = e.detail.value;//是否销售卡密
+			this.isRepeat = isTrue;
+				uni.showToast({
+					icon: 'none',
+					title: isTrue ?'您可以先少量的添加卡密，当库存不足后后可在“我的商品”中补充库存':'请将要销售的内容输入在加密中',
+					duration: 2000
+				});
+
+		},
+		codeInput: function() {
+			this.codeHeight = this.codeString.replace(/[^\n]/gm, '').length + 1;
+		},
 		getPage: function() {
 			//start 检测登录
 			this.ssuserid = getApp().globalData.ssuserid;
@@ -103,8 +134,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.input{
-		margin-top: 26rpx;
-	}
-	
+.input {
+	margin-top: 26rpx;
+}
 </style>
