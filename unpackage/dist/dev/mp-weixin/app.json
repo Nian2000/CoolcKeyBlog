@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/register/index",
+    "pages/user/index",
+    "pages/user/info",
+    "pages/user/user_head",
+    "pages/user/password",
+    "pages/user/paypwd",
+    "pages/user/set"
+  ],
+  "subPackages": [
+    {
+      "root": "bbs",
+      "pages": [
+        "money/my",
+        "order/my",
+        "index/index",
+        "topic/add",
+        "topic/edit",
+        "topic/my",
+        "topic/show",
+        "comment/my",
+        "love/my",
+        "fav/my"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundColorTop": "#FFFFFF",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "un-login": "/components/un-login",
+    "cu-custom": "/colorui/components/cu-custom",
+    "mescroll-body": "/components/mescroll-uni/mescroll-body",
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni"
+  }
+}

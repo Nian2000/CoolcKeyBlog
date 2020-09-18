@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "m-footer": "/components/footer"
+  }
+}

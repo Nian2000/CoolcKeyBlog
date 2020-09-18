@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-popup": "/uview-ui/components/u-popup/u-popup",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "uni-popup-message": "/components/uni-popup/uni-popup-message",
+    "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog",
+    "uni-tag": "/components/uni-tag/uni-tag"
+  }
+}

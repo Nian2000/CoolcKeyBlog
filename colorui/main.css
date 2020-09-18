@@ -2208,6 +2208,11 @@ button.cuIcon.lg {
 	position: relative;
 }
 
+.image-hidden{
+	max-height: 1080rpx;
+	overflow:hidden;
+}
+
 .cu-card.case .image image {
 	width: 100%;
 }

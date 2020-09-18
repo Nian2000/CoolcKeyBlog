@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "uni-tag": "/components/uni-tag/uni-tag",
+    "cmform": "/components/cmform",
+    "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar"
+  }
+}

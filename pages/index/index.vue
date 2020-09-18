@@ -13,12 +13,17 @@
 			此处支持写入原生组件 -->
 			<view class="cu-card case isCard">
 				<view class="cu-item shadow" v-for="(item,index) in list" :key="index" @click="goDetail(item._id)">
-					<view class="image">
-						<image class="sglist-imglist-img" mode="widthFix" :src="item.imgList[0].imgurl"></image>
+					<view class="image image-hidden">
+						<image class="sglist-imglist-img imgBorder" mode="widthFix" :src="item.imgList[0].imgurl"></image>
 						<view class="cu-bar bg-shadeBottom"> <text class="text-cut">{{item.title}}</text></view>
 					</view>
-					<view class="text-content padding-sm text-cut" style="width:100%;">
-						{{item.content}}
+					<view class="flex align-center padding-sm">
+						<view class="price margin-right-sm">
+							{{item.price}}
+						</view>
+						<view class="text-cut text-sm" style="width:100%;">
+							{{item.content}}
+						</view>
 					</view>
 					<view class="content flex-sub">				
 						<view class="text-gray flex justify-around padding-bottom">
@@ -114,5 +119,14 @@
 </script>
 
 <style lang="scss" scoped>
-
+	.price{
+		color: #ff4c00;
+		font-size: 35rpx;
+		font-weight: 500;
+	}
+	.price::before{
+		content: "￥";
+		font-size: 20rpx;
+		font-weight: 400;
+	}
 </style>

@@ -9,7 +9,7 @@
 			<view class="text-gray padding justify-center flex" v-if="Object.keys(list).length==0" ><text>暂无数据</text></view>			
 			<view class="cu-card case isCard">
 				<view class="cu-item shadow" v-for="(item,index) in list" :key="index">
-					<view @click="goDetail(item._id)" class="image">
+					<view @click="goDetail(item._id)" class="image image-hidden">
 						<image class="sglist-imglist-img" mode="widthFix" :src="item.imgList[0].imgurl"></image>
 						<view class="cu-bar bg-shadeBottom"> <text class="text-cut">{{item.title}}</text></view>
 					</view>

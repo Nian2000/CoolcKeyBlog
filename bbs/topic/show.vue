@@ -30,7 +30,7 @@
 			<!-- 	<view class="text-gray flex justify-end">
 					<view class="text-sm margin-bottom-sm">{{data.createTime}}</view>									
 				</view> -->
-				<image style="width: 100%;" v-for="(item,index) in data.imgList" :key="index" :src="item.imgurl" mode="widthFix" @click="openImg(item.imgurl)"></image>		
+				<image style="width: 100%;" v-for="(item,index) in data.imgList" :key="index" :src="item.imgurl" mode="widthFix" @click="openImg(index)"></image>		
 				
 				<view  v-if="!unLogin" class="content flex-sub margin-top-sm">
 					<view class="text-gray flex justify-around">
@@ -92,8 +92,13 @@
 				})
 			},
 			openImg(url){
+				var imgList = new Array();
+				this.data.imgList.forEach((item,index)=>{
+					imgList.push(item.imgurl)
+				})
+				console.log(this.data.imgList,imgList)
 				uni.previewImage({
-					urls:this.imgList,
+					urls:imgList,
 					current:url
 				});
 				
