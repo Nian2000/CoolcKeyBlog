@@ -3722,8 +3722,7 @@ var render = function() {
               )
             ],
             1
-          ),
-      _c("m-footer", { attrs: { _i: 10 } })
+          )
     ],
     1
   )
@@ -5839,8 +5838,7 @@ var render = function() {
               )
             ],
             1
-          ),
-      _c("m-footer", { attrs: { _i: 22 } })
+          )
     ],
     1
   )
@@ -5875,8 +5873,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-var _footer = _interopRequireDefault(__webpack_require__(/*! ../../components/footer.vue */ 7));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+
 {
 
   data: function data() {
@@ -5884,8 +5882,7 @@ var _footer = _interopRequireDefault(__webpack_require__(/*! ../../components/fo
       wxsProps: {} };
 
   },
-  components: {
-    'mFooter': _footer.default } };exports.default = _default;
+  components: {} };exports.default = _default;
 
 /***/ }),
 /* 136 */
@@ -9248,8 +9245,7 @@ var render = function() {
               })
             ],
             2
-          ),
-      _c("m-footer", { attrs: { _i: 13 } })
+          )
     ],
     1
   )
@@ -9284,8 +9280,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-var _footer = _interopRequireDefault(__webpack_require__(/*! ../../components/footer.vue */ 7));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+
 {
 
   data: function data() {
@@ -9293,8 +9289,7 @@ var _footer = _interopRequireDefault(__webpack_require__(/*! ../../components/fo
       wxsProps: {} };
 
   },
-  components: {
-    'mFooter': _footer.default } };exports.default = _default;
+  components: {} };exports.default = _default;
 
 /***/ }),
 /* 237 */

@@ -26,16 +26,12 @@
 				</view>
 			</view>
 		</view>
-		<m-footer tab="user"></m-footer>
 	</view>
 </template>
 
 <script>
-	import mFooter from "../../components/footer.vue";
 	export default {
-		components:{
-			mFooter
-		},
+
 		data() {
 			return {
 				pageLoad:false,

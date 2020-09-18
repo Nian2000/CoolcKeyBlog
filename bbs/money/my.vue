@@ -11,7 +11,6 @@
 				<button type="default">充值</button>
 			</view>
 		</view>
-		<m-footer tab="user"></m-footer>
 	</view>
 </template>
 
