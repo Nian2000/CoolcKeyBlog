@@ -21,7 +21,7 @@
 			<view class="cu-item padding">
 				<view class="flex justify-star align-center">
 					<view class="price margin-bottom-sm margin-right-sm"> {{data.price}} </view>
-					<view class="margin-bottom-sm margin-right-sm"> <uni-tag :text="data.isCode?'卡密':'商品'" type="default" size="small"></uni-tag></view>
+					<view class="margin-bottom-sm margin-right-sm"> <uni-tag :text="data.isCode?'卡密':'虚拟商品'" type="default" size="small"></uni-tag></view>
 					<view class="margin-bottom-sm text-sm text-gray"><uni-tag :text="data.isCode?data.number?'库存:'+data.number:'售空':'库存充足'" type="default" size="small"></uni-tag></view>
 				</view>
 				<view class="text-content margin-bottom-sm">
@@ -41,7 +41,7 @@
 			</view>
 		</view>
 		
-		<view class="cu-bar bg-white solid-bottom margin-top">
+		<view class="cu-bar bg-white solid-bottom margin-top-sm">
 			<view class="action">
 				<text class="cuIcon-titles text-blue"></text> 留言列表
 			</view>

@@ -139,12 +139,21 @@ exports.main = async (event, context) => {
 				}
 				var res = await collection.doc(_id).update(params)
 			} else {
-				if (params.isCode) {//库存参数
+				if (params.price <= 0) {
+					return {
+						error: 1,
+						message: "商品价格设置错误"
+					}
+				}
+				if (params.isCode) { //库存参数
 					params.number = params.code.length;
 				} else {
 					params.number = -1;
 				}
 				var res = await collection.add(params)
+				
+				
+				// 对第一次导入的卡密进行处理
 				if (params.isCode == true) {
 					if (Array.isArray(params.code)) { //开启了卡密
 						params.code.forEach((item, index) => {
@@ -153,6 +162,7 @@ exports.main = async (event, context) => {
 								goodsId: res.id
 							})
 						})
+						delete params.code;//防止以后泄露
 					} else {
 						return {
 							error: 0,
