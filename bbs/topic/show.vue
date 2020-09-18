@@ -10,8 +10,8 @@
 				<view class="cu-avatar round lg" :style="'backgroundImage:url('+ author.avatar +')'"></view>
 				<view class="content flex-sub">
 					<view>{{author.nickname}}</view>
-					<view class="text-gray flex justify-between">
-						<view class="text-sm">粉丝：0 关注：0</view>									
+					<view class="text-gray flex justify-between">							
+						<view class="text-sm">{{data.createTime}} 发布</view>
 					</view>					
 				</view>				
 			</view>
@@ -19,17 +19,20 @@
 		
 		<view class="cu-card no-card margin-top">
 			<view class="cu-item padding">
-				<view class="flex justify-center">
-					<view class="text-lg margin-bottom-sm"> {{data.title}} </view>
+				<view class="flex justify-star align-center">
+					<view class="price margin-bottom-sm margin-right-sm"> {{data.price}} </view>
+					<view class="margin-bottom-sm margin-right-sm"> <uni-tag :text="data.repeat?'卡密':'商品'" type="default" size="small"></uni-tag></view>
+					<view class="margin-bottom-sm text-sm text-gray"><uni-tag :text="'库存:'+data.number?data.number:'无'" type="default" size="small"></uni-tag></view>
 				</view>
-				<view class="text-gray flex justify-end">
+				<view class="text-content margin-bottom-sm">
+					 {{data.title}} <br>{{data.content}}
+				</view>
+			<!-- 	<view class="text-gray flex justify-end">
 					<view class="text-sm margin-bottom-sm">{{data.createTime}}</view>									
-				</view>
+				</view> -->
 				<image style="width: 100%;" v-for="(item,index) in data.imgList" :key="index" :src="item.imgurl" mode="widthFix" @click="openImg(item.imgurl)"></image>		
-				<view class="text-content margin-top-sm">
-					{{data.content}}
-				</view>
-				<view  v-if="!unLogin" class="content flex-sub margin-top-sm">				
+				
+				<view  v-if="!unLogin" class="content flex-sub margin-top-sm">
 					<view class="text-gray flex justify-around">
 						<view @click="loveToggle(data._id)" v-bind:class="islove?'text-red':''"><text class="cuIcon-appreciatefill"></text>点赞</view>
 						<view @click="favToggle(data._id)" v-bind:class="isfav?'text-red':''"><text class="cuIcon-likefill"></text>收藏</view>
@@ -40,7 +43,7 @@
 		
 		<view class="cu-bar bg-white solid-bottom margin-top">
 			<view class="action">
-				<text class="cuIcon-titles text-blue"></text> 跟帖列表
+				<text class="cuIcon-titles text-blue"></text> 留言列表
 			</view>
 		</view>
 		<cmform tablename="bbs-topic" :objectid="data._id"></cmform>
@@ -49,11 +52,13 @@
 
 <script>
 	import cmform from "../../components/cmform.vue";
-	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
+	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue';
+	import uniTag from "@/components/uni-tag/uni-tag.vue";
 	export default {
 		components: {
 			cmform,
-			uniNoticeBar
+			uniNoticeBar,
+			uniTag
 		},
 		data: function() {
 			return {
@@ -87,18 +92,23 @@
 				})
 			},
 			openImg(url){
-				uni.downloadFile({
-				  url: url,
-				  success: function (res) {
-				    var filePath = res.tempFilePath;
-				    uni.openDocument({
-				      filePath: filePath,
-				      success: function (res) {
-				        console.log('打开文档成功');
-				      }
-				    });
-				  }
+				uni.previewImage({
+					urls:this.imgList,
+					current:url
 				});
+				
+				// uni.downloadFile({
+				//   url: url,
+				//   success: function (res) {
+				//     var filePath = res.tempFilePath;
+				//     uni.openDocument({
+				//       filePath: filePath,
+				//       success: function (res) {
+				//         console.log('打开文档成功');
+				//       }
+				//     });
+				//   }
+				// });
 			},
 			getPage: function() {
 				var that = this;
@@ -230,5 +240,14 @@
 </script>
 
 <style lang="scss" scoped>
-	
+	.price{
+		color: #ff4c00;
+		font-size: 40rpx;
+		font-weight: 500;
+	}
+	.price::before{
+		content: "￥";
+		font-size: 30rpx;
+		font-weight: 400;
+	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="text-gray padding justify-center flex" v-if="Object.keys(list).length == 0"><text>暂无点评</text></view>
+		<view class="text-gray padding justify-center flex" v-if="Object.keys(list).length == 0"><text>暂无留言，快来夺走他的第一次</text></view>
 		<view v-else id="comment-list" class="comment-list">
 			<view class="cu-list menu-avatar comment">
 				<view class="cu-item" v-for="(item, key) in list" :key="key">
@@ -15,10 +15,10 @@
 				</view>
 			</view>
 		</view>
-		<view class="text-gray padding justify-center flex" v-if="listShow" @click="getList"><text>查看更多评论</text></view>
+		<view class="text-gray padding justify-center flex" v-if="listShow" @click="getList"><text>查看更多留言</text></view>
 		<view v-if="!unLogin" class="padding-tb-xl margin-top-xl">
 			<view class="cu-bar foot bg-white justify-end flex">
-				<view class="padding-right-xl"><button class="cu-btn bg-blue shadow lg" @click="show = true">评论</button></view>
+				<view class="padding-right-xl"><button class="cu-btn bg-blue shadow lg" @click="show = true">留言</button></view>
 				<view class="padding-right-xl"><button class="cu-btn bg-red shadow lg" @click="showBuy = true">购买</button></view>
 			</view>
 		</view>
@@ -31,7 +31,7 @@
 					</view>
 					<view class="cu-form-group align-start">
 						<view class="title">评论</view>
-						<textarea name="content" maxlength="-1" placeholder="请输入内容"></textarea>
+						<textarea name="content" maxlength="-1" placeholder="温馨提示:系统有严格的审查机制,请勿发布违法或诽谤等内容"></textarea>
 					</view>
 					<view class="flex justify-center padding">
 						<button @click="show = false" class="cu-btn shadow margin-right-xl bg-red">取消</button>
@@ -43,7 +43,7 @@
 		<u-popup v-model="showBuy" mode="bottom">
 			<view class="buy">
 				<text class="margin-bottom">请问要买几张卡密？</text>
-				<slider class="margin-bottom" value="1" @changing="buyNumberM" min="1" max="200" show-value />
+				<slider class="margin-bottom" value="1" @changing="buyNumberM" min="1" max="50" show-value />
 				<view class="operate">
 					<button @click="showBuy = false" class="cu-btn shadow margin-right-xl bg-red">取消</button>
 					<button formType="submit" class="cu-btn shadow bg-blue">购买{{ buyNumber }}张卡密（{{ totalPrice }}元）</button>
@@ -58,11 +58,13 @@ import mdate from '../common/date.js';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue';
 import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
+import uniTag from "@/components/uni-tag/uni-tag.vue";
 export default {
 	components: {
 		uniPopup,
 		uniPopupMessage,
-		uniPopupDialog
+		uniPopupDialog,
+		uniTag
 	},
 	props: {
 		tablename: '',
