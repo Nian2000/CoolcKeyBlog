@@ -139,21 +139,26 @@ exports.main = async (event, context) => {
 				}
 				var res = await collection.doc(_id).update(params)
 			} else {
+				if (params.isCode) {//库存参数
+					params.number = params.code.length;
+				} else {
+					params.number = -1;
+				}
 				var res = await collection.add(params)
-				console.log(res)
-				var code = params.code; //拿出传过来的卡密
-				if (code != null) { //如果卡密不是空的，则直接初始化到数据库里
-					let snsArr = code.split(/[(\r\n)\r\n]+/);
-					snsArr.forEach((item, index) => {
-						if (!item) {
-							snsArr.splice(index, 1); //删除空项
-						}else{
+				if (params.isCode == true) {
+					if (Array.isArray(params.code)) { //开启了卡密
+						params.code.forEach((item, index) => {
 							collectionCode.add({
-								code:item,
-								goodsId:res.id
+								code: item,
+								goodsId: res.id
 							})
+						})
+					} else {
+						return {
+							error: 0,
+							message: "未添加卡密，请到我的商品中添加"
 						}
-					})
+					}
 				}
 			}
 

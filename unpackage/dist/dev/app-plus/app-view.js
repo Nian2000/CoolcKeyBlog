@@ -4869,7 +4869,6 @@ var render = function() {
                   ),
                   _c("v-uni-textarea", {
                     attrs: {
-                      name: "code",
                       maxlength: "-1",
                       placeholder: "请输入卡密,一行一条",
                       _i: 19
@@ -4920,7 +4919,7 @@ var render = function() {
                         [_vm._v("销售卡密")]
                       ),
                       _c("v-uni-switch", {
-                        attrs: { name: "repeat", _i: 24 },
+                        attrs: { name: "isCode", _i: 24 },
                         on: {
                           change: function($event) {
                             return _vm.$handleViewEvent($event)

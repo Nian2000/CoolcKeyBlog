@@ -4,7 +4,7 @@
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
 			<block slot="content">{{data.title}}</block>
 		</cu-custom>
-		 <uni-notice-bar @getmore="getMore" :showGetMore="true" moreText="去订单中查看" single="true" text="您已经购买过该商品了"></uni-notice-bar>
+
 		<view class="cu-list menu-avatar">
 			<view class="cu-item">
 				<view class="cu-avatar round lg" :style="'backgroundImage:url('+ author.avatar +')'"></view>
@@ -17,12 +17,12 @@
 			</view>
 		</view>
 		
-		<view class="cu-card no-card margin-top">
+		<view class="cu-card no-card">
 			<view class="cu-item padding">
 				<view class="flex justify-star align-center">
 					<view class="price margin-bottom-sm margin-right-sm"> {{data.price}} </view>
-					<view class="margin-bottom-sm margin-right-sm"> <uni-tag :text="data.repeat?'卡密':'商品'" type="default" size="small"></uni-tag></view>
-					<view class="margin-bottom-sm text-sm text-gray"><uni-tag :text="'库存:'+data.number?data.number:'无'" type="default" size="small"></uni-tag></view>
+					<view class="margin-bottom-sm margin-right-sm"> <uni-tag :text="data.isCode?'卡密':'商品'" type="default" size="small"></uni-tag></view>
+					<view class="margin-bottom-sm text-sm text-gray"><uni-tag :text="data.isCode?data.number?'库存:'+data.number:'售空':'库存充足'" type="default" size="small"></uni-tag></view>
 				</view>
 				<view class="text-content margin-bottom-sm">
 					 {{data.title}} <br>{{data.content}}

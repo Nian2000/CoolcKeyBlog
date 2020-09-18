@@ -21,16 +21,16 @@
 				<view class="title">简介</view>
 				<textarea name="content" maxlength="-1" placeholder="不用付费直接白嫖的内容"></textarea>
 			</view>
-			<view class="cu-form-group align-start" v-show="isRepeat">
+			<view class="cu-form-group align-start" v-show="isCode">
 				<view class="title">卡密</view>
-				<textarea name="code" v-model="codeString" maxlength="-1" placeholder="请输入卡密,一行一条" v-on:input="codeInput"></textarea>
+				<textarea v-model="codeString" maxlength="-1" placeholder="请输入卡密,一行一条" v-on:input="codeInput"></textarea>
 			</view>
 
 			<view class="cu-form-group text-right text-sm">
-				<view class="" v-show="isRepeat">已经输入卡密：{{ codeHeight }}条</view>
+				<view class="" v-show="isCode">已经输入卡密：{{ codeHeight }}条</view>
 				<view class="hide">
 					<text style="margin-right: 10rpx;">销售卡密</text>
-					<switch name="repeat" @change="hideToast" />
+					<switch name="isCode" @change="hideToast" />
 				</view>
 			</view>
 			<view class="bg-white">
@@ -59,7 +59,7 @@ export default {
 			ssuserid: '',
 			codeString: '',
 			codeHeight: 0,
-			isRepeat: false
+			isCode: false
 		};
 	},
 	onLoad: function() {
@@ -67,14 +67,13 @@ export default {
 	},
 	methods: {
 		hideToast: function(e) {
-			let isTrue = e.detail.value;//是否销售卡密
-			this.isRepeat = isTrue;
-				uni.showToast({
-					icon: 'none',
-					title: isTrue ?'您可以先少量的添加卡密，当库存不足后后可在“我的商品”中补充库存':'请将要销售的内容输入在加密中',
-					duration: 2000
-				});
-
+			let isTrue = e.detail.value; //是否销售卡密
+			this.isCode = isTrue;
+			uni.showToast({
+				icon: 'none',
+				title: isTrue ? '您可以先少量的添加卡密，当库存不足后后可在“我的商品”中补充库存' : '请将要销售的内容输入在加密中',
+				duration: 2000
+			});
 		},
 		codeInput: function() {
 			this.codeHeight = this.codeString.replace(/[^\n]/gm, '').length + 1;
@@ -94,10 +93,9 @@ export default {
 		},
 		formSubmit: function(e) {
 			var params = e.detail.value;
-			// console.log(params)
-			if (params.title == '' || params.content == '' || this.imgsList.length == 0) {
+			if (params.title == '' || params.content == '' || this.imgsList.length == 0 || params.hide == '' || params.price < 0) {
 				uni.showToast({
-					title: '标题、内容必填，图片至少上传一张！',
+					title: '标题、内容、价格、加密 必填，图片至少上传一张！',
 					icon: 'none'
 				});
 				return;
@@ -109,6 +107,18 @@ export default {
 			params.view_num = 1;
 			params.comment_num = 0;
 			params.status = 0;
+			
+			if (this.codeString != null && this.isCode == true) {
+				var snsArr = this.codeString.split(/[(\n)\n]+/); //如果卡密不是空的，则进行分割并清除空行
+				console.log(snsArr)
+				snsArr.forEach((item, index) => {
+					if (!item) {
+						snsArr.splice(index, 1); //删除空项
+					}
+				});
+				params.code = snsArr; //赋值所有卡密数组
+			}
+
 			uniCloud
 				.callFunction({
 					name: 'bbs_topic',
