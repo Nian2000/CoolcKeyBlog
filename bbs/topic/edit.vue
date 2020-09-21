@@ -6,7 +6,39 @@
 		</cu-custom>
 		<un-login v-if="unLogin"></un-login> 
 		<view v-if="pageLoad">
-			<form @submit="formSubmit">
+			
+			<form  @submit="formSubmit">
+				<input type="text" style="display: none;" name="_id" :value="data._id" />
+				<view class="cu-form-group align-start">
+					<view class="title">名称</view>
+					<textarea :value="data.title"  name="title" maxlength="-1" placeholder="给商品起一个响亮点的名字!"></textarea>
+				</view>
+				<view class="cu-form-group align-start">
+					<view class="title">价格</view>
+					<input :value="data.price" name="price" class="input" type="number" placeholder="您要卖多少大洋呢？" />
+				</view>
+				<view class="cu-form-group align-start">
+					<view class="title">加密</view>
+					<textarea :value="data.hide" name="hide" maxlength="-1" placeholder="付费后才可以查看的内容"></textarea>
+				</view>
+				<view class="cu-form-group align-start">
+					<view class="title">简介</view>
+					<textarea :value="data.content" name="content" maxlength="-1" placeholder="不用付费直接白嫖的内容"></textarea>
+				</view>
+
+				<view class="cu-form-group text-right text-sm">
+					<view class="" v-show="isCode">已经输入卡密：{{ codeHeight }}条</view>
+					<view class="hide">
+						<text style="margin-right: 10rpx;">销售卡密</text>
+						<switch :checked="data.isCode" name="isCode" @change="hideToast" />
+					</view>
+				</view>
+				<view class="bg-white">
+					<upimg-box @callParent="callImgList" :defaultImgsList="data.imgList"></upimg-box>
+					<view class="padding flex flex-direction"><button class="cu-btn bg-blue shadow lg" form-type="submit">发布</button></view>
+				</view>
+			</form>
+			<!-- <form @submit="formSubmit">
 				<input type="text" style="display: none;" name="_id" :value="data._id" />
 				<view class="cu-form-group align-start">
 					<view class="title">标题</view>
@@ -21,7 +53,7 @@
 						<button class="cu-btn bg-blue shadow lg" form-type="submit">提交</button>
 					</view>
 				</view>
-			</form>
+			</form> -->
 		 
 		</view>
 	</view>
@@ -40,7 +72,8 @@
 				id:"",
 				data:{},
 				pageLoad:false,
-				ssuserid:""
+				ssuserid:"",
+				isCode: false
 			}
 		},
 		onLoad:function(ops){

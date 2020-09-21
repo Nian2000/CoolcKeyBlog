@@ -19,7 +19,7 @@
 		<view v-if="!unLogin" class="padding-tb-xl margin-top-xl">
 			<view class="cu-bar foot bg-white justify-end flex">
 				<view class="padding-right-xl"><button class="cu-btn bg-blue shadow lg" @click="show = true">留言</button></view>
-				<view class="padding-right-xl"><button class="cu-btn bg-red shadow lg" @click="showBuy = true">购买</button></view>
+				<view class="padding-right-xl"><button class="cu-btn bg-red shadow lg" @click="showBuy = true; totalPrice=price;">购买</button></view>
 			</view>
 		</view>
 		<u-popup v-model="show" mode="bottom">
@@ -28,6 +28,7 @@
 					<view style="display: none;">
 						<input type="text" name="tablename" :value="tablename" />
 						<input type="text" name="objectid" :value="objectid" />
+						<input type="text" name="price" :value="price" />
 					</view>
 					<view class="cu-form-group align-start">
 						<view class="title">评论</view>
@@ -41,12 +42,15 @@
 			</view>
 		</u-popup>
 		<u-popup v-model="showBuy" mode="bottom">
-			<view class="buy">
+			<view class="padding">
 				<text class="margin-bottom">请问要买几张卡密？</text>
-				<slider class="margin-bottom" value="1" @changing="buyNumberM" min="1" max="50" show-value />
-				<view class="operate">
+				<slider class="margin-bottom" :value="buyNumber" @changing="buyNumberM" min="1" max="50" show-value />
+				<view class="flex">购买<input style="width: 100rpx;text-align: center;" type="text" v-model="buyNumber" />张卡密（{{ totalPrice }}元）</view>
+				
+				<view class="flex justify-center margin-top">
 					<button @click="showBuy = false" class="cu-btn shadow margin-right-xl bg-red">取消</button>
-					<button formType="submit" class="cu-btn shadow bg-blue">购买{{ buyNumber }}张卡密（{{ totalPrice }}元）</button>
+					<button formType="submit" class="cu-btn shadow margin-right-xl bg-blue">支付宝</button>
+					<button formType="submit" class="cu-btn shadow margin-right-xl bg-green">微信支付</button>
 				</view>
 			</view>
 		</u-popup>
@@ -68,7 +72,8 @@ export default {
 	},
 	props: {
 		tablename: '',
-		objectid: ''
+		objectid: '',
+		price:0
 	},
 	data: function() {
 		return {
@@ -86,7 +91,6 @@ export default {
 			index: 0,
 			buyNumber: 1,
 			totalPrice: 0, //要更新到初始价格
-			price: 0.5
 		};
 	},
 	created: function() {
@@ -104,7 +108,6 @@ export default {
 		},
 		getPage: function() {
 			var that = this;
-			// console.log(this.objectid)
 			uniCloud.callFunction({
 				name: 'comment',
 				data: {
@@ -179,6 +182,7 @@ export default {
 		cmFormSubmit: function(e) {
 			var that = this;
 			var params = e.detail.value;
+			console.log(params)
 			if (params.content == '') {
 				uni.showToast({
 					title: '评论内容不能为空！',
@@ -212,10 +216,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buy {
-	padding: 30rpx;
-	.operate{
-		margin-left: 100rpx;
-	}
-}
+
 </style>

@@ -46,7 +46,7 @@
 				<text class="cuIcon-titles text-blue"></text> 留言列表
 			</view>
 		</view>
-		<cmform tablename="bbs-topic" :objectid="data._id"></cmform>
+		<cmform tablename="bbs-topic" :objectid="data._id" :price="data.price"></cmform>
 	</view>
 </template>
 
