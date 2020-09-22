@@ -3,27 +3,23 @@
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true"><block slot="content">我的订单</block></cu-custom>
 		<un-login v-if="unLogin"></un-login>
 		<view v-else>
-			<view class="order">
+			<view class="padding">
 				<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem" style-type="button" active-color="#0083dd"></uni-segmented-control>
-				<view class="content">
+				<view class="margin-top-sm">
 					<view v-if="current === 0">
-						
-								<view class="orderItem">
-									<image class="orderImg" src="../../static/user_head.jpg" mode="aspectFill"></image>
-									<view class="orderInfo">
-										<view class="orderName">爱奇艺月卡</view>
-										<view class="orderPrice">20</view>
-										<view class="orderNumber">3</view>
-										<view class="orderTime">2020-10-05 13:52</view>
-									</view>
-									<view class="orderOperate">
-										<button type="default" size="mini">查看卡密</button>
-										<button type="default" size="mini">删除订单</button>
-									</view>
+						<view class="cu-list menu-avatar">
+							<view class="cu-item">
+								<view class="cu-avatar  lg" style="background-image:url(../../static/user_head.jpg);"></view>
+								<view class="content">
+									<view class="text-grey">爱奇艺月卡</view>
+									<view class="text-gray text-sm flex"><view class="text-cut">2020-10-05 13:52</view></view>
 								</view>
-							
-							
-						
+								<view class="action">
+									<view class="text-grey text-xs">20元</view>
+									<view class="cu-tag round bg-grey sm">5张</view>
+								</view>
+							</view>
+						</view>
 					</view>
 					<view v-if="current === 1">选项卡2的内容</view>
 				</view>
@@ -97,81 +93,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-.orderItem{
-	margin-top: 20rpx;
-	padding: 25rpx;
-	background-color: #fff;
-	box-shadow:  0px 0px 15px #c9c6cb;
-	display: flex;
-	border-radius: 10rpx;
-	.orderOperate{
-		display: flex;
-		width: 260rpx;
-		flex-direction: column;
-		justify-content: space-around;
-	}
-	.orderImg{
-		width: 160rpx;
-		height: 160rpx;
-		margin-right: 25rpx;
-		border-radius: 10rpx;
-	}
-	.orderInfo{
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 300rpx;
-		.orderName{
-			font-size: $uni-font-size-base;
-			color: #006bd8;
-		}
-	}
-	.orderPrice{
-		font-size: $uni-font-size-sm;
-		color: $uni-text-color-grey;
-	}
-	.orderNumber{
-		font-size: $uni-font-size-sm;
-		color: $uni-text-color-grey;
-	}
-	.orderTime{
-		font-size: $uni-font-size-sm;
-		color: $uni-text-color-grey;
-	}
-	.orderPrice::after{
-		content: " 元";
-	}
-	.orderNumber::after{
-		content: " 张";
-	}
-}
-
-	
-.order {
-	margin: 30rpx;
-}
-.money {
-	width: 96%;
-	height: 300rpx;
-	line-height: 300rpx;
-	margin: 2%;
-	text-align: center;
-	background-image: linear-gradient(135deg, #52e5e7 10%, #130cb7 100%);
-	border-radius: 10rpx;
-	.over {
-		color: #fff;
-		font-size: 40rpx;
-	}
-}
-
-.button {
-	width: 96%;
-	margin: 2%;
-	display: flex;
-	button {
-		width: 50%;
-	}
-}
-</style>
+<style lang="scss"></style>

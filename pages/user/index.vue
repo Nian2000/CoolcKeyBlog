@@ -28,13 +28,13 @@
 				<view class="cu-list menu sm-border margin-top">
 					<view class="cu-item arrow" @click="gourl('../../bbs/money/my')">
 						<view class="content">
-							<text class="cuIcon-apps text-red"></text>
+							<text class="cuIcon-moneybag text-red"></text>
 							<text class="">我的钱包</text>
 						</view>
 					</view>
 					<view class="cu-item arrow" @click="gourl('../../bbs/order/my')">
 						<view class="content">
-							<text class="cuIcon-apps text-red"></text>
+							<text class="cuIcon-form text-red"></text>
 							<text class="">我的订单</text>
 						</view>
 					</view>
