@@ -40,7 +40,7 @@
 					</view>
 					<view class="cu-item arrow" @click="gourl('../../bbs/topic/my')">
 						<view class="content">
-							<text class="cuIcon-form text-blue"></text>
+							<text class="cuIcon-present text-blue"></text>
 							<text class="">我的商品</text>
 						</view>
 					</view>
