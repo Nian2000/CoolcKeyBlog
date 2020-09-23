@@ -142,13 +142,13 @@ export default {
 				});
 		},
 		del: function(id) {
+			var that = this;
 			uni.showActionSheet({
 				itemList: ['复制链接', '分享商品', '删除商品'],
 				success: function(res) {
 					if (res.tapIndex == 0) {
 					} else if (res.tapIndex == 1) {
 					} else if (res.tapIndex == 2) {
-						var that = this;
 						uni.showModal({
 							title: '删除提示',
 							content: '删除后不可恢复',

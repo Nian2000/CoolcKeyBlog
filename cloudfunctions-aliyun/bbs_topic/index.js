@@ -181,6 +181,10 @@ exports.main = async (event, context) => {
 		case "delete":
 			var id = params.id;
 			var collection = db.collection(table)
+			var collectionCode = db.collection(codetable)
+			var res1 = await collectionCode.where({
+				'goodsId':id
+			}).remove()
 			var res = await collection.doc(id).remove();
 			return {
 				error: 0,

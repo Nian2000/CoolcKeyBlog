@@ -2,7 +2,7 @@
 
 const uniID = require('uni-id')
 const db = uniCloud.database();
-const _table='uni-id-users';
+const _table = 'uni-id-users';
 exports.main = async (event) => {
 	//event为客户端上传的参数
 	console.log('event : ' + event)
@@ -15,21 +15,21 @@ exports.main = async (event) => {
 
 	switch (event.action) {
 		case 'get':
-			var id=event.id;
-			var   collection = db.collection(_table)
+			var id = event.id;
+			var collection = db.collection(_table)
 			var row = await collection.where({
-				_id:id
+				_id: id
 			}).limit(1).get();
-			if(row.data.length<1){
+			if (row.data.length < 1) {
 				return {
-					error:1,
-					message:"数据不存在"
+					error: 1,
+					message: "数据不存在"
 				}
 			}
 			return {
-				error:0,
-				data:{
-					user:row.data[0]
+				error: 0,
+				data: {
+					user: row.data[0]
 				},
 			};
 			break;
