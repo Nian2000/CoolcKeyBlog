@@ -1,4 +1,9 @@
 // 本文件中的json内容将在云函数【运行】时作为参数传给云函数。
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 {
+	cloudAction: 'delete',
+	params: {
+		id: '5f6b03c44318d80001aed903'
+	}
+	uniIdToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZjZhZWUyMDYzOWNhNDAwMDE5ZGJkYmYiLCJjbGllbnRJZCI6IjE4OTM5MDJkNmFlOTBiZDliMjk4NDFhMmU2YmZhODMzIiwiaWF0IjoxNjAwODUxMjI1LCJleHAiOjE2MDE1NzEyMjV9.jtstm8oTolEwdQ-WKHQKu16p2uS_xisl67Wy0zJOe9M'
 }
