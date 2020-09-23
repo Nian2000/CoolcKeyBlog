@@ -10,7 +10,6 @@ exports.main = async (event) => {
 
 	let params = event.params
 	let res = {}
-
 	let payload = {}
 
 	switch (event.action) {

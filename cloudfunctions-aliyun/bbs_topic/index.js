@@ -5,6 +5,7 @@ const codetable = 'code';
 const dbCmd = db.command;
 
 exports.main = async (event, context) => {
+	console.log(event)
 	let params = event.params
 	const action = event.cloudAction;
 	switch (action) {
@@ -50,7 +51,7 @@ exports.main = async (event, context) => {
 				}
 			};
 			break;
-		case "show":
+		case "show"://展示详细信息
 			var id = params.id;
 			var collection = db.collection(table)
 			var res = await collection.where({
@@ -71,7 +72,7 @@ exports.main = async (event, context) => {
 				},
 			};
 			break;
-		case "my":
+		case "my"://查看我发布的商品
 			var collection = db.collection(table)
 			var res = await collection.where({
 					userid: params.ssuserid
