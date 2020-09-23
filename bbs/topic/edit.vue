@@ -1,17 +1,13 @@
 <template>
-	<view>	
-	
-		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
-			<block slot="content">编辑</block>
-		</cu-custom>
-		<un-login v-if="unLogin"></un-login> 
+	<view>
+		<cu-custom bgColor="bg-gradual-blue" :isBack="true"><block slot="content">编辑</block></cu-custom>
+		<un-login v-if="unLogin"></un-login>
 		<view v-if="pageLoad">
-			
-			<form  @submit="formSubmit">
+			<form @submit="formSubmit">
 				<input type="text" style="display: none;" name="_id" :value="data._id" />
 				<view class="cu-form-group align-start">
 					<view class="title">名称</view>
-					<textarea :value="data.title"  name="title" maxlength="-1" placeholder="给商品起一个响亮点的名字!"></textarea>
+					<textarea :value="data.title" name="title" maxlength="-1" placeholder="给商品起一个响亮点的名字!"></textarea>
 				</view>
 				<view class="cu-form-group align-start">
 					<view class="title">价格</view>
@@ -27,7 +23,6 @@
 				</view>
 
 				<view class="cu-form-group text-right text-sm">
-					<view class="" v-show="isCode">已经输入卡密：{{ codeHeight }}条</view>
 					<view class="hide">
 						<text style="margin-right: 10rpx;">销售卡密</text>
 						<switch :checked="data.isCode" name="isCode" @change="hideToast" />
@@ -54,102 +49,103 @@
 					</view>
 				</view>
 			</form> -->
-		 
 		</view>
 	</view>
 </template>
 
 <script>
-	import mdate from "@/common/date.js"; 
-	import upimgBox from "../../components/upimgbox.vue";
-	export default {
-		components:{		 
-			upimgBox
+import mdate from '@/common/date.js';
+import upimgBox from '../../components/upimgbox.vue';
+export default {
+	components: {
+		upimgBox
+	},
+	data: function() {
+		return {
+			imgsList: [],
+			id: '',
+			data: {},
+			pageLoad: false,
+			ssuserid: '',
+			isCode: false
+		};
+	},
+	onLoad: function(ops) {
+		this.id = ops.id;
+		this.getPage();
+	},
+	methods: {
+		callImgList: function(e) {
+			this.imgsList = e;
 		},
-		data:function(){
-			return {
-				imgsList:[],
-				id:"",
-				data:{},
-				pageLoad:false,
-				ssuserid:"",
-				isCode: false
+		getPage: async function() {
+			var that = this;
+			//start 检测登录
+			this.ssuserid = getApp().globalData.ssuserid;
+			this.unLogin = getApp().globalData.unLogin;
+			if (this.ssuserid == '') {
+				return false;
 			}
-		},
-		onLoad:function(ops){
-			this.id=ops.id;
-			this.getPage();
-		},
-		methods:{
-			callImgList:function(e){
-				this.imgsList = e;			
-			},
-			getPage:async function(){
-				var that=this;
-				//start 检测登录
-				this.ssuserid=getApp().globalData.ssuserid;
-				this.unLogin=getApp().globalData.unLogin;
-				if(this.ssuserid==''){
-					return false;
-				} 
-				//End 检测是否登录 
-				uniCloud.callFunction({
-					name:"bbs_topic",
-					data:{
-						cloudAction:"add",
-						params:{
-							ssuserid:this.ssuserid,
-							id:this.id
-						}						
-					}
-				}).then((result)=>{
-					var res=result.result;			 				 
-					if(res.error){
-						uni.showToast({
-							title:res.message
-						})
-						return false; 
-					}
-					that.pageLoad=true; 
-					that.data=res.data.data[0];
-					console.log(that.data) 
-				})
-			},
-			formSubmit:function(e){
-				if(this.imgsList.length == 0){
-					this.imgsList = this.data.imgList
-				}
-				var params=e.detail.value;
-				params.createTime=new Date().Format("yyyy-MM-dd hh:mm:ss");
-				params.imgList=this.imgsList;
-				params.ssuserid=this.ssuserid;
-				uniCloud.callFunction({
+			//End 检测是否登录
+			uniCloud
+				.callFunction({
 					name: 'bbs_topic',
 					data: {
-						cloudAction:"save",
-						params:params
+						cloudAction: 'add',
+						params: {
+							ssuserid: this.ssuserid,
+							id: this.id
+						}
 					}
-				}).then((result) => {
-					var res=result.result;
-					if(res.error){
+				})
+				.then(result => {
+					var res = result.result;
+					if (res.error) {
 						uni.showToast({
-							title:res.message
-						})
-						return false; 
+							title: res.message
+						});
+						return false;
+					}
+					that.pageLoad = true;
+					that.data = res.data.data[0];
+				});
+		},
+		formSubmit: function(e) {
+			if (this.imgsList.length == 0) {
+				this.imgsList = this.data.imgList;
+			}
+			var params = e.detail.value;
+			params.createTime = new Date().Format('yyyy-MM-dd hh:mm:ss');
+			params.imgList = this.imgsList;
+			params.ssuserid = this.ssuserid;
+			uniCloud
+				.callFunction({
+					name: 'bbs_topic',
+					data: {
+						cloudAction: 'save',
+						params: params
+					}
+				})
+				.then(result => {
+					var res = result.result;
+					if (res.error) {
+						uni.showToast({
+							title: res.message
+						});
+						return false;
 					}
 					uni.showToast({
-						title:"发布成功",
-						icon:'none'
-					}) 
-					uni.navigateBack()
-				}).catch((err) => {				 
-					console.error(err)
+						title: '发布成功',
+						icon: 'none'
+					});
+					uni.navigateBack();
 				})
-			}
+				.catch(err => {
+					console.error(err);
+				});
 		}
 	}
+};
 </script>
 
-<style lang="scss" scoped>
-	
-</style>
+<style lang="scss" scoped></style>
