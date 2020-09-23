@@ -12,7 +12,7 @@
 				<image :src="logoImage" mode="widthFix" class="header"></image>
 			</view>
 			<view class="flex justify-center">
-				<view class="">酷C社区</view>
+				<view class="">小胡宅基地，欢迎你！</view>
 			</view>
 			<!-- 主体表单 -->
 			<view class="main">
