@@ -1,6 +1,28 @@
 <template>
-	<view class="regBg">
-		<view class="regBox" v-if="pageLoad">
+	<view class="login">
+		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
+			<block slot="content">注册</block>
+		</cu-custom>
+
+		<view class="content padding-xl">
+			<!-- 头部logo -->
+			<view class="flex justify-center">
+				<image :src="logoImage" mode="widthFix" class="header"></image>
+			</view>
+
+			<!-- 主体表单 -->
+			<view class="main">
+				<wInput v-model="username" type="text" maxlength="11" placeholder="请填写用户名"></wInput>
+				<wInput v-model="password" type="text" maxlength="11" placeholder="请输入登录密码"></wInput>
+				<wInput v-model="password2" type="text" maxlength="11" placeholder="请再次输入密码"></wInput>
+			</view>
+			<wButton text="注 册" :rotate="isRotate" @click.native="formSubmit"></wButton>
+			<view class="flex justify-center margin-top-xl">
+				<navigator class="cl-white pointer flex-1" url="/pages/login/index">去登录</navigator>
+				<!-- <navigator class="cl-white pointer" url="/pages/login/findpwd" >忘记密码</navigator> -->
+			</view>
+		</view>
+		<!-- 		<view class="regBox" v-if="pageLoad">
 			<form @submit="formSubmit">		
 			
 			<view class="cu-form-group margin-top">
@@ -22,111 +44,118 @@
 			</view>
 		   
 			</form>
-		</view>
+		</view> -->
 	</view>
 </template>
 
 <script>
-	 
-	var yzmTimer=60,yzmTime=59,yzmEnable=true;
-	export default{
-		data:function(){
+	import wInput from '@/components/watch-login/watch-input.vue';
+	import wButton from '@/components/watch-login/watch-button.vue';
+	var yzmTimer = 60,
+		yzmTime = 59,
+		yzmEnable = true;
+	export default {
+		components: {
+			wInput,
+			wButton
+		},
+		data: function() {
 			return {
-				pageLoad:false, 
-				pageData:{},			 
+				logoImage: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-blogfaka/cab53950-fe29-11ea-b680-7980c8a877b8.png',
+				isRotate: false, //是否加载旋转
+				pageLoad: false,
+				pageData: {},
+				username: '',
+				password: '',
+				password2: '',
+				nickname: ''
 			};
 		},
-		onLoad:function(option){
-			this.pageLoad=true;
+		onLoad: function(option) {
+			this.pageLoad = true;
 		},
-		 
-		methods:{
-			 
-			formSubmit:function(e){
-				var that=this;
-				e.detail.value.username=e.detail.value.nickname;
-				if(e.detail.value.password2!=e.detail.value.password){
+
+		methods: {
+
+			formSubmit: function(e) {
+				var that = this;
+				that.nickname = that.username;
+				if (that.password != that.password2) {
 					uni.showToast({
-						title:"两次密码不一样",
-						icon:"none"
+						title: "两次密码不一样",
+						icon: "none"
 					})
 					return false;
 				}
+				that.isRotate = true;
 				uniCloud.callFunction({
 					name: 'user-center',
 					data: {
 						action: 'register',
 						params: {
-							username: e.detail.value.username,
-							password: e.detail.value.password,
-							nickname:e.detail.value.nickname,
-							gold:0,
-							grade:0,
-							avatar:"/static/user_head.jpg"
+							username: that.username,
+							password: that.password,
+							nickname: that.nickname,
+							gold: 0,
+							grade: 0,
+							avatar: "/static/user_head.jpg"
 						}
 					},
 					success(e) {
+						that.isRotate = false;
 						uni.showModal({
 							showCancel: false,
 							content: e.result.msg
 						})
-						if(e.result.code==0){
+						if (e.result.code == 0) {
 							uni.setStorageSync('uniIdToken', e.result.token);
-							var callRes=uniCloud.callFunction({
-								name:'user-center',
-								data:{
-									action:'checkToken'
+							var callRes = uniCloud.callFunction({
+								name: 'user-center',
+								data: {
+									action: 'checkToken'
 								},
-								success:function(callRes){
-									if(callRes.result.uid==undefined){
+								success: function(callRes) {
+									if (callRes.result.uid == undefined) {
 										return false;
 									}
-									getApp().globalData.ssuserid=callRes.result.uid;
-									getApp().globalData.unLogin=false;
+									getApp().globalData.ssuserid = callRes.result.uid;
+									getApp().globalData.unLogin = false;
 									uni.reLaunch({
-										url:"/pages/index/index"
+										url: "/pages/index/index"
 									})
 								}
 							})
-							
+
 						}
-						
+
 					},
 					fail(e) {
+						that.isRotate = false;
 						console.error(e)
 						uni.showModal({
 							showCancel: false,
 							content: '注册失败，请稍后再试'
 						})
 					}
-				}) 
-				
+				})
+
 			}
 		},
 	}
 </script>
 
 <style scoped lang="scss">
-	.yzmDisable{
-		background-color: #eee;
-		color: #999;
+	.login {
+		background-color: #ffffff;
+		width: 100vw;
+		height: 100vh;
 	}
-	.regBox{
-		position: absolute;
-		top: 50%;
-		left: 30upx;
-		right: 30upx;
-		margin-top: -390upx;
-		padding:30upx 20upx;
-		background-color: #fff; 
-		border-radius: 20upx;
+
+	.main {
+		margin-top: 40upx;
 	}
-	.regBg{
-		background: linear-gradient( #29cee8,#619ad6);
-		position: absolute;
-		top: 0upx;
-		bottom: 0upx;
-		left: 0upx;
-		right: 0upx;
+
+	.header {
+		width: 30vw;
 	}
 </style>
