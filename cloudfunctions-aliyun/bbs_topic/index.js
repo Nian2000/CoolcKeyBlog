@@ -51,7 +51,7 @@ exports.main = async (event, context) => {
 				}
 			};
 			break;
-		case "show"://展示详细信息
+		case "show": //展示详细信息
 			var id = params.id;
 			var collection = db.collection(table)
 			var res = await collection.where({
@@ -72,7 +72,7 @@ exports.main = async (event, context) => {
 				},
 			};
 			break;
-		case "my"://查看我发布的商品
+		case "my": //查看我发布的商品
 			var collection = db.collection(table)
 			var res = await collection.where({
 					userid: params.ssuserid
@@ -140,6 +140,7 @@ exports.main = async (event, context) => {
 				}
 				var res = await collection.doc(_id).update(params)
 			} else {
+				var code = new Array();
 				if (params.price <= 0) {
 					return {
 						error: 1,
@@ -148,28 +149,23 @@ exports.main = async (event, context) => {
 				}
 				if (params.isCode) { //库存参数
 					params.number = params.code.length;
+					if (Array.isArray(params.code)) { //开启了卡密
+						code = params.code;
+					}
 				} else {
 					params.number = -1;
 				}
+				delete params.code;
 				var res = await collection.add(params)
-				
-				
-				// 对第一次导入的卡密进行处理
+
+				// 对导入的卡密进行处理
 				if (params.isCode == true) {
-					if (Array.isArray(params.code)) { //开启了卡密
-						params.code.forEach((item, index) => {
-							collectionCode.add({
-								code: item,
-								goodsId: res.id
-							})
+					code.forEach((item, index) => {
+						collectionCode.add({
+							code: item,
+							goodsId: res.id
 						})
-						delete params.code;//防止以后泄露
-					} else {
-						return {
-							error: 0,
-							message: "未添加卡密，请到我的商品中添加"
-						}
-					}
+					})
 				}
 			}
 
@@ -184,7 +180,7 @@ exports.main = async (event, context) => {
 			var collection = db.collection(table)
 			var collectionCode = db.collection(codetable)
 			var res1 = await collectionCode.where({
-				'goodsId':id
+				'goodsId': id
 			}).remove()
 			var res = await collection.doc(id).remove();
 			return {
