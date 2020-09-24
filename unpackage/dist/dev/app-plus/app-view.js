@@ -3897,45 +3897,79 @@ var render = function() {
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
+        [
+          _c("span", { attrs: { _i: 2 } }),
+          _c("span", { attrs: { _i: 3 } }),
+          _c("span", { attrs: { _i: 4 } }),
+          _c("span", { attrs: { _i: 5 } }),
+          _c("span", { attrs: { _i: 6 } }),
+          _c("span", { attrs: { _i: 7 } }),
+          _c("span", { attrs: { _i: 8 } }),
+          _c("span", { attrs: { _i: 9 } }),
+          _c("span", { attrs: { _i: 10 } }),
+          _c("span", { attrs: { _i: 11 } })
+        ],
+        1
+      ),
+      _c(
         "cu-custom",
-        { attrs: { _i: 1 } },
+        { attrs: { _i: 12 } },
         [
           _c(
             "template",
-            { attrs: { slot: "content", _i: 2 }, slot: "content" },
+            { attrs: { slot: "content", _i: 13 }, slot: "content" },
             [_vm._v("我的钱包")]
           )
         ],
         2
       ),
-      _vm._$g(3, "i")
-        ? _c("un-login", { attrs: { _i: 3 } })
+      _vm._$g(14, "i")
+        ? _c("un-login", { attrs: { _i: 14 } })
         : _c(
             "v-uni-view",
-            { attrs: { _i: 4 } },
+            { attrs: { _i: 15 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+                { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
-                    [_vm._v("余额：" + _vm._$g(6, "t0-0") + "元")]
+                    { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
+                    [
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
+                        [_vm._v("余额：" + _vm._$g(18, "t0-0") + "元")]
+                      )
+                    ],
+                    1
+                  ),
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
+                    [
+                      _c(
+                        "v-uni-view",
+                        {
+                          staticClass: _vm._$g(20, "sc"),
+                          attrs: { type: "default", _i: 20 }
+                        },
+                        [_vm._v("提现")]
+                      ),
+                      _c(
+                        "v-uni-view",
+                        {
+                          staticClass: _vm._$g(21, "sc"),
+                          attrs: { type: "default", _i: 21 }
+                        },
+                        [_vm._v("充值")]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-                [
-                  _c("v-uni-button", { attrs: { type: "default", _i: 8 } }, [
-                    _vm._v("提现")
-                  ]),
-                  _c("v-uni-button", { attrs: { type: "default", _i: 9 } }, [
-                    _vm._v("充值")
-                  ])
                 ],
                 1
               )
@@ -4035,7 +4069,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\n * 这里是uni-app内置的常用样式变量\n *\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\n *\n */\n/**\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\n *\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.money {\n  width: 96%;\n  height: 300rpx;\n  line-height: 300rpx;\n  margin: 2%;\n  text-align: center;\n  background-image: -webkit-linear-gradient(315deg, #52E5E7 10%, #130CB7 100%);\n  background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);\n  border-radius: 10rpx;\n}\n.money .over {\n  color: #fff;\n  font-size: 40rpx;\n}\n.button {\n  width: 96%;\n  margin: 2%;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n}\n.button uni-button {\n  width: 50%;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\n * 这里是uni-app内置的常用样式变量\n *\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\n *\n */\n/**\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\n *\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.btn-tm {\n  border: 1rpx #6c6c6c solid;\n  width: 300rpx;\n  text-align: center;\n  border-radius: 20rpx;\n  box-shadow: 0rpx 3rpx 25rpx rgba(0, 0, 0, 0.3);\n}\n.wallet {\n  z-index: 9999;\n}\n.money {\n  width: 96%;\n  height: 300rpx;\n  line-height: 300rpx;\n  margin: 2%;\n  text-align: center;\n  border-radius: 10rpx;\n}\n.money .over {\n  color: #000000;\n  font-size: 40rpx;\n}\n.button {\n  width: 96%;\n  margin: 2%;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n}\n.button uni-button {\n  width: 50%;\n}\n.background {\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n}\n.background span {\n  width: 20vmin;\n  height: 20vmin;\n  border-radius: 20vmin;\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  position: absolute;\n  -webkit-animation-name: move;\n          animation-name: move;\n  -webkit-animation-duration: 6s;\n          animation-duration: 6s;\n  -webkit-animation-timing-function: linear;\n          animation-timing-function: linear;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n}\n.background span:nth-child(1) {\n  color: rgba(101, 223, 255, 0.3);\n  top: 44%;\n  left: 97%;\n  -webkit-animation-duration: 15s;\n          animation-duration: 15s;\n  -webkit-animation-delay: -13.8s;\n          animation-delay: -13.8s;\n  -webkit-transform-origin: 11vw -22vh;\n          transform-origin: 11vw -22vh;\n  box-shadow: 40vmin 0 10.12735945vmin currentColor;\n}\n.background span:nth-child(2) {\n  color: rgba(0, 255, 254, 0.4);\n  top: 93%;\n  left: 8%;\n  -webkit-animation-duration: 13.8s;\n          animation-duration: 13.8s;\n  -webkit-animation-delay: -10.9s;\n          animation-delay: -10.9s;\n  -webkit-transform-origin: 10vw 23vh;\n          transform-origin: 10vw 23vh;\n  box-shadow: 40vmin 0 12.7346672971vmin currentColor;\n}\n.background span:nth-child(3) {\n  color: rgba(68, 155, 255, 0.3);\n  top: 14%;\n  left: 41%;\n  -webkit-animation-duration: 15.9s;\n          animation-duration: 15.9s;\n  -webkit-animation-delay: -6.7s;\n          animation-delay: -6.7s;\n  -webkit-transform-origin: -9vw -24vh;\n          transform-origin: -9vw -24vh;\n  box-shadow: -40vmin 0 11.4923952406vmin currentColor;\n}\n.background span:nth-child(4) {\n  color: rgba(99, 208, 255, 0.6);\n  top: 52%;\n  left: 75%;\n  -webkit-animation-duration: 14.3s;\n          animation-duration: 14.3s;\n  -webkit-animation-delay: -12.6s;\n          animation-delay: -12.6s;\n  -webkit-transform-origin: 16vw 25vh;\n          transform-origin: 16vw 25vh;\n  box-shadow: 40vmin 0 13.3657534039vmin currentColor;\n}\n.background span:nth-child(5) {\n  color: rgba(0, 160, 255, 0.5);\n  top: 7%;\n  left: 5%;\n  -webkit-animation-duration: 15.9s;\n          animation-duration: 15.9s;\n  -webkit-animation-delay: -10s;\n          animation-delay: -10s;\n  -webkit-transform-origin: 8vw 3vh;\n          transform-origin: 8vw 3vh;\n  box-shadow: -40vmin 0 13.3942178273vmin currentColor;\n}\n.background span:nth-child(6) {\n  color: rgba(0, 234, 250, 0.4);\n  top: 35%;\n  left: 1%;\n  -webkit-animation-duration: 11.6s;\n          animation-duration: 11.6s;\n  -webkit-animation-delay: -6s;\n          animation-delay: -6s;\n  -webkit-transform-origin: 0vw 17vh;\n          transform-origin: 0vw 17vh;\n  box-shadow: -40vmin 0 7.6304875279vmin currentColor;\n}\n.background span:nth-child(7) {\n  color: rgba(55, 189, 255, 0.8);\n  top: 42%;\n  left: 84%;\n  -webkit-animation-duration: 11s;\n          animation-duration: 11s;\n  -webkit-animation-delay: -6.9s;\n          animation-delay: -6.9s;\n  -webkit-transform-origin: 11vw -8vh;\n          transform-origin: 11vw -8vh;\n  box-shadow: 40vmin 0 13.6665321499vmin currentColor;\n}\n.background span:nth-child(8) {\n  color: rgba(48, 184, 255, 0.7);\n  top: 53%;\n  left: 95%;\n  -webkit-animation-duration: 15s;\n          animation-duration: 15s;\n  -webkit-animation-delay: -10.9s;\n          animation-delay: -10.9s;\n  -webkit-transform-origin: 25vw 15vh;\n          transform-origin: 25vw 15vh;\n  box-shadow: 40vmin 0 13.2849881717vmin currentColor;\n}\n.background span:nth-child(9) {\n  color: rgba(101, 223, 255, 0.4);\n  top: 75%;\n  left: 67%;\n  -webkit-animation-duration: 11.7s;\n          animation-duration: 11.7s;\n  -webkit-animation-delay: -13.9s;\n          animation-delay: -13.9s;\n  -webkit-transform-origin: -11vw -3vh;\n          transform-origin: -11vw -3vh;\n  box-shadow: 40vmin 0 7.2158804055vmin currentColor;\n}\n.background span:nth-child(10) {\n  color: rgba(101, 223, 255, 0.3);\n  top: 59%;\n  left: 51%;\n  -webkit-animation-duration: 12.1s;\n          animation-duration: 12.1s;\n  -webkit-animation-delay: -11.7s;\n          animation-delay: -11.7s;\n  -webkit-transform-origin: -5vw -7vh;\n          transform-origin: -5vw -7vh;\n  box-shadow: -40vmin 0 7.4269772253vmin currentColor;\n}\n@-webkit-keyframes move {\n100% {\n    -webkit-transform: translate3d(0, 0, 1px) rotate(360deg);\n            transform: translate3d(0, 0, 1px) rotate(360deg);\n}\n}\n@keyframes move {\n100% {\n    -webkit-transform: translate3d(0, 0, 1px) rotate(360deg);\n            transform: translate3d(0, 0, 1px) rotate(360deg);\n}\n}\n", ""]);
 // Exports
 module.exports = exports;
 

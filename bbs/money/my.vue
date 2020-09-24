@@ -21,7 +21,7 @@
 				<view class="money">
 					<view class="over">余额：{{ user.gold }}元</view>
 				</view>
-				<view class="flex align-center">
+				<view class="flex justify-around">
 					<view type="default" class="padding btn-tm">提现</view>
 					<view type="default" class="padding btn-tm">充值</view>
 				</view>
@@ -88,8 +88,7 @@
 <style lang="scss">
 	.btn-tm{
 		border: 1rpx #6c6c6c solid;
-		width: 50%;
-		margin: 20rpx;
+		width: 300rpx;
 		text-align: center;
 		border-radius: 20rpx;
 		box-shadow: 0rpx 3rpx 25rpx rgba($color: #000000, $alpha: 0.3);

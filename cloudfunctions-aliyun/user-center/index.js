@@ -5,7 +5,7 @@ const db = uniCloud.database();
 const _table = 'uni-id-users';
 exports.main = async (event) => {
 	//event为客户端上传的参数
-	console.log('event : ' + event)
+	//console.log('event : ' + event)
 
 
 	let params = event.params
