@@ -20,7 +20,6 @@ exports.main = async (event, context) => {
 				userId: userId,
 				_id: params.codeId
 			}).remove()
-			console.log("用户id", userId.uid, 'token', token, 'codeid', params.codeId, 'res', res)
 			return {
 				error: 0,
 				data: "success",

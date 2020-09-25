@@ -23,13 +23,6 @@
 							<view class="text-content padding-sm text-cut" style="width:100%;">
 								{{item.code}}
 							</view>
-							<view class="content flex-sub">				
-								<view class="text-gray flex justify-around padding-bottom">
-									<view><text class="cuIcon-appreciatefill"></text> {{item.love_num}}</view>
-									<view><text class="cuIcon-messagefill"></text> {{item.comment_num}}</view>
-									<view><text class="cuIcon-attentionfill"></text> {{item.view_num}}</view>
-								</view>
-							</view>
 						</view>
 					</view>
 				</mescroll-body>	
@@ -90,16 +83,16 @@ export default {
 				})
 				.then(result => {
 					console.log(result)
-					// var res = result.result;
-					// if (res.error) {
-					// 	uni.showToast({
-					// 		title: res.message
-					// 	});
-					// 	return false;
-					// }
-					// that.pageLoad = true;
-					// that.data = res.data.data[0];
-					// console.log(that.data);
+					var res = result.result;
+					if (res.error) {
+						uni.showToast({
+							title: res.message
+						});
+						return false;
+					}
+					that.pageLoad = true;
+					that.data = res.data.data[0];
+					console.log(that.data);
 				});
 		},
 		formSubmit: function(e) {
