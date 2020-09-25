@@ -1,21 +1,44 @@
 'use strict';
+
 const db = uniCloud.database();
+const tableCode = 'code'
+// const uniID = require('uni-id')
+
 exports.main = async (event, context) => {
-	//event为客户端上传的参数
-	//返回数据给客户端
-	let params = event.params
-	let res = {}
-	let payload = {}
+	console.log(event.params)
+	let params = event.params;
+	let res = {};
+	let payload = {};
+	let token = event.uniIdToken;
+	// let userId = await uniID.checkToken(token);
+	let type = event.type;
+	let collection = db.collection(tableCode);
 	
-	
-	var type = event.type;
-	switch (type){
+	switch (type) {
 		case 'del':
-		
-		
-		case'get':
+			res = collection.where({
+				userId: userId,
+				_id: params.codeId
+			}).remove()
+			console.log("用户id", userId.uid, 'token', token, 'codeid', params.codeId, 'res', res)
+			return {
+				error: 0,
+				data: "success",
+				res: userId
+			};
+			break;
+		case 'get':
+			res = await collection.where({
+				goodsId: params.goodsId
+			}).get()
+			return {
+				error: 0,
+				msg: "success",
+				data: res
+			};
+			break;
+		case 'add':
+			break;
 	}
-	
-	
 	return event
 };

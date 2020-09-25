@@ -79,26 +79,27 @@ export default {
 			//End 检测是否登录
 			uniCloud
 				.callFunction({
-					name: 'bbs_topic',
+					name: 'code',
 					data: {
-						cloudAction: 'add',
+						type: 'get',
 						params: {
 							ssuserid: this.ssuserid,
-							id: this.id
+							goodsId: this.id
 						}
 					}
 				})
 				.then(result => {
-					var res = result.result;
-					if (res.error) {
-						uni.showToast({
-							title: res.message
-						});
-						return false;
-					}
-					that.pageLoad = true;
-					that.data = res.data.data[0];
-					console.log(that.data);
+					console.log(result)
+					// var res = result.result;
+					// if (res.error) {
+					// 	uni.showToast({
+					// 		title: res.message
+					// 	});
+					// 	return false;
+					// }
+					// that.pageLoad = true;
+					// that.data = res.data.data[0];
+					// console.log(that.data);
 				});
 		},
 		formSubmit: function(e) {

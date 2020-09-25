@@ -121,7 +121,6 @@ exports.main = async (event, context) => {
 				var _id = params._id;
 				delete params._id;
 				var userid = params.ssuserid;
-
 				var row = await collection.where({
 					_id: _id
 				}).limit(1).get();
@@ -157,13 +156,13 @@ exports.main = async (event, context) => {
 				}
 				delete params.code;
 				var res = await collection.add(params)
-
 				// 对导入的卡密进行处理
 				if (params.isCode == true) {
 					code.forEach((item, index) => {
 						collectionCode.add({
 							code: item,
-							goodsId: res.id
+							goodsId: res.id,
+							userId: params.userid
 						})
 					})
 				}
