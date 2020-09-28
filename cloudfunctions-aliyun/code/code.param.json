@@ -3,7 +3,8 @@
 {
 	type: 'get',
 	params: {
-		goodsId: '5f6d9affcab79200010781fc'
+		goodsId: '5f6d9affcab79200010781fc',
+		start: 0,
+		limit: 20
 	}
-	uniIdToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZjZhZWUyMDYzOWNhNDAwMDE5ZGJkYmYiLCJjbGllbnRJZCI6IjE4OTM5MDJkNmFlOTBiZDliMjk4NDFhMmU2YmZhODMzIiwiaWF0IjoxNjAwOTM1Njc0LCJleHAiOjE2MDM1Mjc2NzR9.T6ARVBMKxxcY3MrtqQIwSpYTdk82vpAoFVja3xo9K7E'
 }

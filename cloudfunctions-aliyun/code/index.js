@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
 	// let userId = await uniID.checkToken(token);
 	let type = event.type;
 	let collection = db.collection(tableCode);
-	
+
 	switch (type) {
 		case 'del':
 			res = collection.where({
@@ -28,12 +28,24 @@ exports.main = async (event, context) => {
 			break;
 		case 'get':
 			res = await collection.where({
-				goodsId: params.goodsId
-			}).get()
+					goodsId: params.goodsId
+				}).orderBy("_id", "desc")
+				.skip(params.start)
+				.limit(params.limit)
+				.get();
+			var {
+				total
+			} = await collection
+				.where({
+					goodsId: params.goodsId
+				})
+				.count()
 			return {
 				error: 0,
-				msg: "success",
-				data: res
+				data: {
+					list: res.data,
+					total: total
+				}
 			};
 			break;
 		case 'add':

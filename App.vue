@@ -13,7 +13,6 @@
 					uniIdToken: uni.getStorageSync('uniIdToken')
 				},
 				success: function(callRes) {
-					console.log(callRes, callRes.result.uid)
 					if (callRes.result.uid == undefined) {
 						return false;
 					}

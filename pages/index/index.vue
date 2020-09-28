@@ -98,6 +98,7 @@
 		},
 		methods: {
 			/*下拉刷新的回调*/
+			
 			downCallback() {
 				this.mescroll.resetUpScroll(); // 重置列表为第一页 (自动执行 page.num=1, 再触发upCallback方法 )
 			},
